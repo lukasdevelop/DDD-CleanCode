@@ -1,36 +1,26 @@
-import { InMemoryQuestionsRepository } from "test/repositories/in-memory-questions-repository";
-import { MakeQuestion } from "test/factories/make-question";
 import { InMemoryQuestionCommentsRepository } from "test/repositories/in-memory-question-comments-repository";
-import { CommentOnQuestionUseCase } from "./comment-on-question";
+import { DeleteQuestionCommentUseCase } from "./delete-question-comment";
+import { MakeQuestionCommentComment } from "test/factories/make-question-comment";
 
-let inMemoryQuestionsRepo: InMemoryQuestionsRepository;
 let inMemoryQuestionCommentsRepo: InMemoryQuestionCommentsRepository;
-let sut: CommentOnQuestionUseCase;
+let sut: DeleteQuestionCommentUseCase;
 
-describe("Comment on questin", () => {
+describe("Delete question commment", () => {
   beforeEach(() => {
-    inMemoryQuestionsRepo = new InMemoryQuestionsRepository();
     inMemoryQuestionCommentsRepo = new InMemoryQuestionCommentsRepository();
-
-    sut = new CommentOnQuestionUseCase(
-      inMemoryQuestionsRepo,
-      inMemoryQuestionCommentsRepo,
-    );
+    sut = new DeleteQuestionCommentUseCase(inMemoryQuestionCommentsRepo);
   });
 
   it("should be able to comment on question", async () => {
-    const question = MakeQuestion();
+    const questionComment = MakeQuestionCommentComment();
 
-    await inMemoryQuestionsRepo.create(question);
+    await inMemoryQuestionCommentsRepo.create(questionComment);
 
     await sut.execute({
-      questionId: question.id.toString(),
-      authorId: question.authorId.toString(),
-      content: "Comentario teste",
+      questionCommentId: questionComment.id.toString(),
+      authorId: questionComment.authorId.toString(),
     });
 
-    expect(inMemoryQuestionCommentsRepo.items[0].content).toEqual(
-      "Comentario teste",
-    );
+    expect(inMemoryQuestionCommentsRepo.items).toHaveLength(0);
   });
 });
