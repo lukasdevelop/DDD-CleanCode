@@ -1,6 +1,6 @@
 import { InMemoryQuestionCommentsRepository } from "test/repositories/in-memory-question-comments-repository";
 import { DeleteQuestionCommentUseCase } from "./delete-question-comment";
-import { MakeQuestionCommentComment } from "test/factories/make-question-comment";
+import { MakeQuestionComment } from "test/factories/make-question-comment";
 import { UniqueEntityID } from "../../enterprise/entities/unique-entity-id";
 
 let inMemoryQuestionCommentsRepo: InMemoryQuestionCommentsRepository;
@@ -13,7 +13,7 @@ describe("Delete question commment", () => {
   });
 
   it("should be able to comment on question", async () => {
-    const questionComment = MakeQuestionCommentComment();
+    const questionComment = MakeQuestionComment();
 
     await inMemoryQuestionCommentsRepo.create(questionComment);
 
@@ -26,7 +26,7 @@ describe("Delete question commment", () => {
   });
 
   it("should not be able to delete another user question comment", async () => {
-    const questionComment = MakeQuestionCommentComment({
+    const questionComment = MakeQuestionComment({
       authorId: new UniqueEntityID("author-1"),
     });
 

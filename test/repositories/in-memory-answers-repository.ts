@@ -5,7 +5,7 @@ import { Answer } from "@/domain/forum/enterprise/entities/answer";
 export class InMemoryAnswersRepository implements AnswersRepository {
   public items: Answer[] = [];
 
-  async findManyByQuestionId(questionId: string, { page }: PaginationParams) {
+  async findManyByAnswerId(questionId: string, { page }: PaginationParams) {
     const answer = this.items
       .filter((item) => item.questionId.toString() === questionId)
       .slice((page - 1) * 20, page * 20);
