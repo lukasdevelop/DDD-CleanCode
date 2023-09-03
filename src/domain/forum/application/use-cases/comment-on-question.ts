@@ -1,7 +1,10 @@
+import { Either, right } from "@/core/either";
 import { QuestionComment } from "../../enterprise/entities/question-comment";
 import { UniqueEntityID } from "../../enterprise/entities/unique-entity-id";
 import { QuestionsRepository } from "../repositories/questions-repository";
 import { QuestionCommentsRepository } from "./../repositories/question-comments-repository";
+import { ResourceNotFoundError } from "./errors/resource-not-found-error";
+import { NotAllowedError } from "./errors/not-allow-error";
 
 interface CommentOnQuestionUseCaseRequest {
   authorId: string;
@@ -9,9 +12,10 @@ interface CommentOnQuestionUseCaseRequest {
   content: string;
 }
 
-interface CommentOnQuestionUseCaseResponse {
-  questionComment: QuestionComment;
-}
+type CommentOnQuestionUseCaseResponse = Either<
+  ResourceNotFoundError,
+  NotAllowedError | { questionComment: QuestionComment }
+>;
 
 export class CommentOnQuestionUseCase {
   constructor(
@@ -38,8 +42,6 @@ export class CommentOnQuestionUseCase {
 
     await this.questionCommentsRepository.create(questionComment);
 
-    return {
-      questionComment,
-    };
+    return right({ questionComment });
   }
 }
