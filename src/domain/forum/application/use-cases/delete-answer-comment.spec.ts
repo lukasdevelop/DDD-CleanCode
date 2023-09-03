@@ -2,6 +2,7 @@ import { UniqueEntityID } from "../../enterprise/entities/unique-entity-id";
 import { InMemoryAnswerCommentsRepository } from "test/repositories/in-memory-answer-comments-repository";
 import { DeleteAnswerCommentUseCase } from "./delete-answer-comment";
 import { MakeAnswerComment } from "test/factories/make-answer-comment";
+import { NotAllowedError } from "./errors/not-allow-error";
 
 let inMemoryAnswerCommentRepo: InMemoryAnswerCommentsRepository;
 let sut: DeleteAnswerCommentUseCase;
@@ -34,11 +35,12 @@ describe("Delete Answer Comment", () => {
 
     await inMemoryAnswerCommentRepo.create(answerComment);
 
-    expect(() => {
-      return sut.execute({
-        authorId: "author-2",
-        answerCommentId: answerComment.answerId.toString(),
-      });
-    }).rejects.toBeInstanceOf(Error);
+    const result = await sut.execute({
+      answerCommentId: answerComment.id.toString(),
+      authorId: "author-2",
+    });
+
+    expect(result.isLeft()).toBe(true);
+    expect(result.value).toBeInstanceOf(NotAllowedError);
   });
 });
