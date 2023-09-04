@@ -31,12 +31,12 @@ describe("Fetch Question Comments", () => {
       }),
     );
 
-    const { questionComments } = await sut.execute({
+    const result = await sut.execute({
       questionId: "question-1",
       page: 1,
     });
 
-    expect(questionComments).toHaveLength(3);
+    expect(result.value?.questionComments).toHaveLength(3);
   });
 });
 
@@ -49,10 +49,10 @@ it("should be able to fetch paginated question comments", async () => {
     );
   }
 
-  const { questionComments } = await sut.execute({
+  const result = await sut.execute({
     questionId: "question-1",
     page: 2,
   });
 
-  expect(questionComments).toHaveLength(5);
+  expect(result.value?.questionComments).toHaveLength(5);
 });

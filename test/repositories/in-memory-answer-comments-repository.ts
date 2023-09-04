@@ -9,7 +9,6 @@ implements AnswerCommentsRepository
   public items: AnswerComment[] = [];
 
   async findById(id: string): Promise<AnswerComment | null> {
-    console.log('hahaha', id)
     const answercomment = this.items.find((item) => item.id.toString() === id);
 
     if (!answercomment) {

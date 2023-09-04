@@ -18,8 +18,6 @@ describe("Delete Answer Comment", () => {
 
     await inMemoryAnswerCommentRepo.create(answerComment);
 
-    console.log(answerComment);
-
     await sut.execute({
       answerCommentId: answerComment.id.toString(),
       authorId: answerComment.authorId.toString(),
