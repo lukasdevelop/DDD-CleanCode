@@ -12,7 +12,6 @@ implements AnswerCommentsRepository
     const answercomment = this.items.find((item) => item.id.toString() === id);
 
     if (!answercomment) {
-      console.log('aa', answercomment)
       return null;
     }
 

@@ -1,6 +1,6 @@
-import { UniqueEntityID } from "@/domain/forum/enterprise/entities/unique-entity-id";
+import { UniqueEntityID } from "@/core/entities/unique-entity-id";
 
-export class Entity<Props> {
+export abstract class Entity<Props> {
   private _id: UniqueEntityID;
   protected props: Props;
 

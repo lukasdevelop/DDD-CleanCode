@@ -3,7 +3,7 @@ import {
   Question,
   QuestionProps,
 } from "@/domain/forum/enterprise/entities/question";
-import { UniqueEntityID } from "@/domain/forum/enterprise/entities/unique-entity-id";
+import { UniqueEntityID } from "@/core/entities/unique-entity-id";
 import { Slug } from "@/domain/forum/enterprise/entities/value-objects/slug";
 
 export function MakeQuestion(

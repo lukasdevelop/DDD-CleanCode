@@ -1,4 +1,4 @@
-import { UniqueEntityID } from "../../enterprise/entities/unique-entity-id";
+import { UniqueEntityID } from "../../../../core/entities/unique-entity-id";
 import { InMemoryQuestionCommentsRepository } from "test/repositories/in-memory-question-comments-repository";
 import { DeleteQuestionCommentUseCase } from "./delete-question-comment";
 import { MakeQuestionComment } from "test/factories/make-question-comment";

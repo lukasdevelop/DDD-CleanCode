@@ -1,5 +1,5 @@
 import { AnswerComment } from "../../enterprise/entities/answer-comment";
-import { UniqueEntityID } from "../../enterprise/entities/unique-entity-id";
+import { UniqueEntityID } from "../../../../core/entities/unique-entity-id";
 import { AnswersRepository } from "../repositories/answers-repository";
 import { AnswerCommentsRepository } from "../repositories/answer-comments-repository";
 import { Either, left, right } from "@/core/either";
