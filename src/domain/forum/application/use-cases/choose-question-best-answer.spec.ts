@@ -1,10 +1,10 @@
 import { InMemoryQuestionsRepository } from "test/repositories/in-memory-questions-repository";
 import { MakeQuestion } from "test/factories/make-question";
-import { UniqueEntityID } from "../../../../core/entities/unique-entity-id";
+import { UniqueEntityID } from "@/core/entities/unique-entity-id";
 import { InMemoryAnswersRepository } from "test/repositories/in-memory-answers-repository";
 import { ChooseQuestionBestAnswerUseCase } from "./choose-question-best-answer";
 import { MakeAnswer } from "test/factories/make-answer";
-import { NotAllowedError } from "./errors/not-allow-error";
+import { NotAllowedError } from "@/core/errors/errors/not-allow-error";
 import { InMemoryAnswerAttachmentsRepository } from "test/repositories/in-memory-answer-attachments-repository";
 import { InMemoryQuestionAttachmentsRepository } from "test/repositories/in-memory-question-attachments-repository";
 
